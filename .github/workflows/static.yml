@@ -1,0 +1,100 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DB Legends Farming Bot</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="bg-dark text-white text-center p-4">
+        <h1>DB Legends Farming Bot</h1>
+        <p>Automate your farming in Dragon Ball Legends</p>
+    </header>
+
+    <!-- Bot Options Section -->
+    <section id="bot-options" class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2>Bot Options</h2>
+                <form id="botOptionsForm">
+                    <div class="form-group">
+                        <label for="content">Clear All In-Game Content:</label>
+                        <input type="checkbox" id="content" name="content">
+                    </div>
+                    <div class="form-group">
+                        <label for="pvp">Exclude PvP:</label>
+                        <input type="checkbox" id="pvp" name="pvp">
+                    </div>
+                    <div class="form-group">
+                        <label for="missions">Execute Specific Missions:</label>
+                        <input type="text" class="form-control" id="missions" name="missions" placeholder="Enter mission IDs (comma-separated)">
+                    </div>
+                    <div class="form-group">
+                        <label for="repeat">Repeat:</label>
+                        <select class="form-control" id="repeat" name="repeat">
+                            <option value="none">None</option>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="os">Operating System:</label>
+                        <input type="text" class="form-control" id="os" name="os" placeholder="Enter operating system">
+                    </div>
+                    <div class="form-group">
+                        <label for="transfer">Transfer to iOS/Android:</label>
+                        <input type="checkbox" id="transfer" name="transfer">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Start Farming Bot</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap & jQuery JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+```
+
+```css
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    font-weight: bold;
+}
+
+#bot-options {
+    background-color: #f7f7f7;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+```
+
+```js
+$(document).ready(function() {
+    $('#botOptionsForm').submit(function(e) {
+        e.preventDefault();
+        let formData = $(this).serializeArray();
+        let options = {};
+        formData.forEach(function(input) {
+            if (input.name === 'content' || input.name === 'pvp' || input.name === 'transfer') {
+                options[input.name] = input.value === 'on' ? true : false;
+            } else {
+                options[input.name] = input.value;
+            }
+        });
+        console.log(options);
+        alert('Farming bot started!');
+    });
+});
+```
